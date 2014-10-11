@@ -1,19 +1,27 @@
 var path = require('path');
+var version = '0.0.1';
+var tmpPath = path.join(__dirname, '..', '.tmp');
+var buildPath = path.join(tmpPath, version);
+var sailsConfigPath = path.join(__dirname, '..', 'config');
+var scriptSrcPath = path.join(__dirname, '..', 'src/scripts');
+var libSrcPath = path.join(__dirname, '..', 'src/lib');
+var styleSrcPath = path.join(__dirname, '..', 'src/styles');
+var imageSrcPath = path.join(__dirname, '..', 'src/images');
 
 module.exports = {
 	port: '8080',
-    build: 'dev',                  /* 'dev' | 'prod' */
+	environment: 'development',
     isWatching: false,
-
     appStartFileName: 'main.js',
 
-    buildPath: path.join(__dirname, '..', '.tmp'),
-    sailsConfigPath: path.join(__dirname, '..', 'config'),
+	tmpPath: tmpPath,
+    buildPath: buildPath,
+    sailsConfigPath: sailsConfigPath,
 
-    scriptSrcPath: path.join(__dirname, '..', 'src/scripts'),
-    libSrcPath: path.join(__dirname, '..', 'src/lib'),
-    styleSrcPath: path.join(__dirname, '..', 'src/styles'),
-    imageSrcPath: path.join(__dirname, '..', 'src/images'),
+    scriptSrcPath: scriptSrcPath,
+    libSrcPath: libSrcPath,
+    styleSrcPath: styleSrcPath,
+    imageSrcPath: imageSrcPath,
 
     scriptDestPath: path.join('public/scripts'),
     libDestPath: path.join('public/lib'),

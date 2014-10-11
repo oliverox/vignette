@@ -1,7 +1,7 @@
+var APP_VERSION = '0.0.1';
 var path = require('path');
-var version = '0.0.1';
 var tmpPath = path.join(__dirname, '..', '.tmp');
-var buildPath = path.join(tmpPath, version);
+var buildPath = path.join(tmpPath, APP_VERSION);
 var sailsConfigPath = path.join(__dirname, '..', 'config');
 var scriptSrcPath = path.join(__dirname, '..', 'src/scripts');
 var libSrcPath = path.join(__dirname, '..', 'src/lib');

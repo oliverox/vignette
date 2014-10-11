@@ -86,9 +86,9 @@ nginx
 
 Build & Start App
 -----------------
-Make sure gulp/config.js is configured accordingly.
+Make sure gulp/config.js is configured accordingly by updating **APP_VERSION** when necessary.
 
-###Build and serve
+###Build and serve [development env]
 ```
 gulp
 ```
@@ -108,7 +108,7 @@ gulp build
 gulp lift
 ```
 
-###Build for production
+###Build for production environment
 ```
 gulp prod
 ```

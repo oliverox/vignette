@@ -51,7 +51,8 @@ server {
    server_name 0.0.0.0;
 
    location ^~ /public/ {
-       root "~/git/app-boilerplate/.tmp/";
+       root "~/git/app-boilerplate/.tmp/";  # change to root directory of your
+                                            # app/.tmp
    }
 
    location / {

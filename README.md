@@ -1,9 +1,14 @@
 App Boilerplate
 ===============
-A boilerplate Sails application with the following architecture:
+A boilerplate Sails application built on top of the following architecture:
 
-###Framework
-Sails.js
+<ul>
+    <li>Sails</li>
+    <li>Gulp</li>
+    <li>Browserify</li>
+    <li>Backbone</li>
+    <li>React</li>
+</ul>
 
 ###Build tool
 Gulp.js

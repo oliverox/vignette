@@ -10,7 +10,8 @@
 // var io = require('socket.io-browserify');
 // var $ = require('jquery');
 // var _ = require('underscore');
-// var Backbone = require('backbone');
+var Backbone = require('exoskeleton');
+var React = require('react');
 
 
 module.exports = App = function App () {};

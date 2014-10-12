@@ -36,17 +36,16 @@ gulp.task('browserify', function() {
             .transform(reactify)
             // Enable source maps!
             .bundle()
-            // Report compile errors
             .on('error', handleErrors)
-            // Use vinyl-source-stream to make the
-            // stream gulp compatible. Specifiy the
-            // desired output filename here.
             .pipe(source(config.appStartFileName))
-            // Specify the output destination
             .pipe(gulp.dest(path.join(config.buildPath, config.scriptDestPath)))
-            // Log when bundling completes!
             .on('end', bundleLogger.end);
     };
+
+    bundler = watchify(bundler);
+    bundler.on('update', function(){
+        bundle();
+    });
 
     return bundle();
 });

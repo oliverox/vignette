@@ -1,12 +1,13 @@
 /**
- * UserController
+ * AppController
  *
  * @description :: Server-side logic for managing users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
 module.exports = {
-    hi: function (req, res) {
-        return res.send("Hi there! This is the 'hi' action of UserController.");
+    index: function (req, res) {
+        // res.locals.layout = "main";
+        return res.view('main');
     }
 };

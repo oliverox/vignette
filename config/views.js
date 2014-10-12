@@ -57,7 +57,7 @@ module.exports.views = {
   *                                                                           *
   ****************************************************************************/
 
-  layout: false
+  layout: 'main'
 
   /****************************************************************************
   *                                                                           *
@@ -66,7 +66,7 @@ module.exports.views = {
   * If you're using the default engine, `ejs`, Sails supports the use of      *
   * multiple `layout` files. To take advantage of this, before rendering a    *
   * view, override the `layout` local in your controller by setting           *
-  * `res.locals.layout`. (this is handy if you parts of your app's UI look    *
+  * `res.locals.layout`. (this is handy if parts of your app's UI look        *
   * completely different from each other)                                     *
   *                                                                           *
   * e.g. your default might be                                                *

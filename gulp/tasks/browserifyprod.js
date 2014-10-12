@@ -7,6 +7,7 @@
 */
 
 var browserify      = require('browserify');
+var reactify        = require('reactify');
 var watchify        = require('watchify');
 var bundleLogger    = require('../util/bundleLogger');
 var config          = require('../config');
@@ -19,7 +20,7 @@ var path            = require('path');
 
 gulp.task('browserifyprod', function() {
 
-    var bundleMethod = config.isWatching ? watchify : browserify;
+    var bundleMethod = browserify;
 
     var bundler = bundleMethod({
         // Specify the entry point of your app
@@ -34,6 +35,7 @@ gulp.task('browserifyprod', function() {
         bundleLogger.start();
 
         return bundler
+            .transform(reactify)
             // Enable source maps!
             .bundle()
             // Report compile errors
@@ -49,11 +51,6 @@ gulp.task('browserifyprod', function() {
             // Log when bundling completes!
             .on('end', bundleLogger.end);
     };
-
-    if (config.isWatching) {
-        // Rebundle with watchify on changes.
-        bundler.on('update', bundle);
-    }
 
     return bundle();
 });

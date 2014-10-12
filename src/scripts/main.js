@@ -1,5 +1,9 @@
-var App = require('./app');
+var Application = require('./application');
+var routes = require('./routes');
 
-console.log('---main---');
-var app = new App();
+var app = new Application({
+    title: "Boilerplate App",
+    routes: routes
+});
+
 app.start();

@@ -11,7 +11,6 @@ var imageSrcPath = path.join(__dirname, '..', 'src/images');
 module.exports = {
 	port: '8080',
 	environment: 'development',
-    isWatching: false,
     appStartFileName: 'main.js',
 
 	tmpPath: tmpPath,

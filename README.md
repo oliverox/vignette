@@ -51,7 +51,7 @@ server {
    server_name 0.0.0.0;
 
    location ^~ /public/ {
-       root "~/git/app-boilerplate/.tmp/";  # change to root directory of your
+       root "<APP_DIRECTORY>/<APP_NAME>/.tmp/";  # change to root directory of your
                                             # app/.tmp
    }
 
@@ -69,16 +69,16 @@ server {
    }
 }
 ```
-
+###Clone this repo
+```
+git clone https://github.com/oliverox/app-boilerplate.git <APP_NAME>
+```
 
 ###Install packages
 ```
+cd <APP_NAME>
 npm install
 ```
-
-
-Run nginx
----------
 
 ###Start nginx
 ```

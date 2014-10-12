@@ -40,6 +40,16 @@ var Application = (function () {
         console.log('Application#initRouter');
         var pushState = true;
         this.router = Router.start(this.appContainerElement, routes, pushState);
+        if (Backbone.history && Backbone.history._wantsPushState) {
+            document.getElementsByTagName('html')[0].addEventListener("click", function(evt) {
+                if (evt.srcElement.tagName === 'A') {
+                    evt.stopPropagation();
+                    evt.preventDefault();
+                    Backbone.history.navigate(evt.srcElement.pathname, true);
+                }
+            });
+        }
+
     };
 
     Application.prototype.start = function () {

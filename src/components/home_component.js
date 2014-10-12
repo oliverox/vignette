@@ -1,7 +1,7 @@
 /**
  * @jsx React.DOM
  */
- 
+
 var React = require('react');
 
 var HomeComponent = React.createClass({
@@ -9,6 +9,7 @@ var HomeComponent = React.createClass({
         return (
             <div className="home">
                 <h1>Home Component</h1>
+                <a href="/other">go to other component</a>
             </div>
         );
     }

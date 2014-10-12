@@ -4,5 +4,6 @@ var sails   = require('sails');
 
 gulp.task('liftprod', function(){
     config.environment = 'production';
+    config.verbose = false;
     sails.lift(config);
 });

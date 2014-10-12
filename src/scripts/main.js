@@ -5,5 +5,3 @@ var app = new Application({
     title: "Boilerplate App",
     routes: routes
 });
-
-app.start();

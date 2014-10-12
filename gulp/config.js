@@ -1,4 +1,5 @@
 var APP_VERSION = '0.0.1';
+
 var path = require('path');
 var tmpPath = path.join(__dirname, '..', '.tmp');
 var buildPath = path.join(tmpPath, APP_VERSION);
@@ -11,6 +12,7 @@ var imageSrcPath = path.join(__dirname, '..', 'src/images');
 module.exports = {
 	port: '8080',
 	environment: 'development',
+	verbose: 'true',
     appStartFileName: 'main.js',
 
 	tmpPath: tmpPath,

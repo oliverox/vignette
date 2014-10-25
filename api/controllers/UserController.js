@@ -6,7 +6,6 @@
  */
 
 module.exports = {
-    hi: function (req, res) {
-        return res.send("Hi there! This is the 'hi' action of UserController.");
-    }
+	
 };
+

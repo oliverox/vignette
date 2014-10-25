@@ -17,8 +17,12 @@ function handleRouteChange(container, component) {
 module.exports = {
 
     set404: function(component) {
-        if (_started) throw "You must set the 404 component before router#start is called!";
-        if (typeof component !== 'function') throw "You must supply a React component to router#set404!";
+        if (_started) {
+            throw "You must set the 404 component before router#start is called!";
+        }
+        if (typeof component !== 'function') {
+            throw "You must supply a React component to router#set404!";
+        }
         _missing = component;
     },
 
@@ -31,7 +35,9 @@ module.exports = {
         }
 
         for (var route in routes) {
-            if (!routes.hasOwnProperty(route) ) continue;
+            if (!routes.hasOwnProperty(route) ) {
+                continue;
+            }
             var component = routes[route],
                 name = "route"+ _nextId++;
             _router.route(route, name, handleRouteChange.bind(this, container, component));

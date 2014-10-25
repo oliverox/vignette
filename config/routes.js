@@ -32,14 +32,24 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /*': {
+  'get /': {
       controller: 'app',
       action: 'index'
   },
-  'get /hi': {
-      controller: 'user',
-      action: 'hi'
+
+  'get /other': {
+      controller: 'app',
+      action: 'index'
+  },
+
+  'get /test': {
+      view: 'test'
   }
+
+  // 'get /hi': {
+  //     controller: 'user',
+  //     action: 'hi'
+  // }
 
   /***************************************************************************
   *                                                                          *

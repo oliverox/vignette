@@ -43,6 +43,7 @@
     "exoskeleton": "^0.7.0",
     "jquery": "^2.1.1",
     "react": "^0.11.2",
-    "underscore": "^1.7.0"
+    "underscore": "^1.7.0",
+    "velocity-animate": "^1.1.0"
   }
 }

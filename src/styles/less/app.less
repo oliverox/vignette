@@ -28,3 +28,58 @@ section {
 .appendready {
     color: lightgreen;
 }
+
+
+/* prototype */
+html, body, #app-container {
+    height: 100%;
+}
+
+#scroller-container{
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	bottom: 20px;
+	right: 240px;
+	border: 5px solid black;
+	cursor: default;
+	overflow: hidden;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+#scroller-content{
+	background: white;
+
+	-webkit-transform-origin: left top;
+	-webkit-transform: translateZ(0);
+	-moz-transform-origin: left top;
+	-moz-transform: translateZ(0);
+	-ms-transform-origin: left top;
+	-ms-transform: translateZ(0);
+	-o-transform-origin: left top;
+	-o-transform: translateZ(0);
+	transform-origin: left top;
+	transform: translateZ(0);
+}
+
+// .image {
+//     position: absolute;
+//     height: 100%;
+//     top: 0;
+//     left: 0;
+//     z-index: 1;
+//
+//     img {
+//         height: 100%;
+//     }
+// }
+//
+// .text {
+//     position: fixed;
+//     z-index: 2;
+// }

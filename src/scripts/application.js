@@ -2,7 +2,7 @@
 // var $ = require('jquery');
 // var _ = require('underscore');
 var Backbone = require('exoskeleton');
-var React = require('react');
+// var React = require('react');
 var Router = require('./router');
 
 var Application = (function () {

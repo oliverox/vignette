@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Scroller - Normal</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        input{
+            color: inherit;
+            font: inherit;
+        }
+
+        body{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        #container{
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            bottom: 20px;
+            right: 20px;
+            border: 5px solid black;
+            cursor: default;
+            overflow: hidden;
+
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+
+        #content{
+            background: hotpink;
+
+            -webkit-transform-origin: left top;
+            -webkit-transform: translateZ(0);
+            -moz-transform-origin: left top;
+            -moz-transform: translateZ(0);
+            -ms-transform-origin: left top;
+            -ms-transform: translateZ(0);
+            -o-transform-origin: left top;
+            -o-transform: translateZ(0);
+            transform-origin: left top;
+            transform: translateZ(0);
+        }
+
+        img {
+            height: 100%;
+        }
+
+    </style>
+
+    <script src="./lib/Animate.js"></script>
+    <script src="./lib/Scroller.js"></script>
+
+    <script type="text/javascript">
+        /* DOM-based rendering (Uses 3D when available, falls back on margin when transform not available) */
+        var render = (function(global) {
+
+            var docStyle = document.documentElement.style;
+
+            var engine;
+            if (global.opera && Object.prototype.toString.call(opera) === '[object Opera]') {
+                engine = 'presto';
+            } else if ('MozAppearance' in docStyle) {
+                engine = 'gecko';
+            } else if ('WebkitAppearance' in docStyle) {
+                engine = 'webkit';
+            } else if (typeof navigator.cpuClass === 'string') {
+                engine = 'trident';
+            }
+
+            var vendorPrefix = {
+                trident: 'ms',
+                gecko: 'Moz',
+                webkit: 'Webkit',
+                presto: 'O'
+            }[engine];
+
+            var helperElem = document.createElement("div");
+            var undef;
+
+            var perspectiveProperty = vendorPrefix + "Perspective";
+            var transformProperty = vendorPrefix + "Transform";
+
+            if (helperElem.style[perspectiveProperty] !== undef) {
+
+                return function(left, top, zoom) {
+                    content.style[transformProperty] = 'translate3d(' + (-left) + 'px,' + (-top) + 'px,0) scale(' + zoom + ')';
+                };
+
+            } else if (helperElem.style[transformProperty] !== undef) {
+
+                return function(left, top, zoom) {
+                    content.style[transformProperty] = 'translate(' + (-left) + 'px,' + (-top) + 'px) scale(' + zoom + ')';
+                };
+
+            } else {
+
+                return function(left, top, zoom) {
+                    content.style.marginLeft = left ? (-left/zoom) + 'px' : '';
+                    content.style.marginTop = top ? (-top/zoom) + 'px' : '';
+                    content.style.zoom = zoom || '';
+                };
+
+            }
+        })(this);
+    </script>
+
+</head>
+<body>
+    <div id="container">
+        <div id="content"></div>
+    </div>
+
+    <!-- Custom rendering code -->
+    <script type="text/javascript">
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        // Settings
+        var contentWidth = 1536;
+        var contentHeight = 1024;
+
+        // Initialize layout
+        var container = document.getElementById("container");
+        var content = document.getElementById("content");
+
+        // content.style.width = contentWidth + "px";
+        // content.style.height = contentHeight + "px";
+        content.style.width = "100%";
+        content.style.height = "100%";
+
+
+        // Generate content
+        var frag = document.createDocumentFragment();
+        var imgElem = document.createElement("img");
+
+        var imgSrc = "./images/004.jpg";
+        if (getParameterByName('img') !== '') {
+            imgSrc = getParameterByName('img');
+        }
+        imgElem.src = imgSrc;
+        frag.appendChild(imgElem);
+        content.appendChild(frag);
+
+        imgElem.onload = function() {
+            console.debug(imgElem.width, imgElem.height);
+            contentWidth = imgElem.width;
+            contentHeight = imgElem.height;
+            initialize();
+        };
+    </script>
+
+    <!-- Create Scroller, bind UI layer and mouse/touch events -->
+    <script type="text/javascript">
+
+        function initialize() {
+            // Intialize layout
+            var clientWidth = 0;
+            var clientHeight = 0;
+
+            // Initialize Scroller
+            this.scroller = new Scroller(render, {
+                zooming: true
+            });
+
+            var rect = container.getBoundingClientRect();
+            scroller.setPosition(rect.left + container.clientLeft, rect.top + container.clientTop);
+
+
+            // Reflow handling
+            var reflow = function() {
+                clientWidth = container.clientWidth;
+                clientHeight = container.clientHeight;
+                scroller.setDimensions(clientWidth, clientHeight, contentWidth, contentHeight);
+            };
+
+            window.addEventListener("resize", reflow, false);
+            reflow();
+
+            if ('ontouchstart' in window) {
+
+                container.addEventListener("touchstart", function(e) {
+                    // Don't react if initial down happens on a form element
+                    if (e.touches[0] && e.touches[0].target && e.touches[0].target.tagName.match(/input|textarea|select/i)) {
+                        return;
+                    }
+
+                    scroller.doTouchStart(e.touches, e.timeStamp);
+                    e.preventDefault();
+                }, false);
+
+                document.addEventListener("touchmove", function(e) {
+                    scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
+                }, false);
+
+                document.addEventListener("touchend", function(e) {
+                    scroller.doTouchEnd(e.timeStamp);
+                }, false);
+
+                document.addEventListener("touchcancel", function(e) {
+                    scroller.doTouchEnd(e.timeStamp);
+                }, false);
+
+            } else {
+
+                var mousedown = false;
+
+                container.addEventListener("mousedown", function(e) {
+                    if (e.target.tagName.match(/input|textarea|select/i)) {
+                        return;
+                    }
+
+                    scroller.doTouchStart([{
+                        pageX: e.pageX,
+                        pageY: e.pageY
+                    }], e.timeStamp);
+
+                    mousedown = true;
+                }, false);
+
+                document.addEventListener("mousemove", function(e) {
+                    if (!mousedown) {
+                        return;
+                    }
+
+                    scroller.doTouchMove([{
+                        pageX: e.pageX,
+                        pageY: e.pageY
+                    }], e.timeStamp);
+
+                    mousedown = true;
+                }, false);
+
+                document.addEventListener("mouseup", function(e) {
+                    if (!mousedown) {
+                        return;
+                    }
+
+                    scroller.doTouchEnd(e.timeStamp);
+
+                    mousedown = false;
+                }, false);
+
+                container.addEventListener(navigator.userAgent.indexOf("Firefox") > -1 ? "DOMMouseScroll" :  "mousewheel", function(e) {
+                    scroller.doMouseZoom(e.detail ? (e.detail * -120) : e.wheelDelta, e.timeStamp, e.pageX, e.pageY);
+                }, false);
+
+            }
+        }
+
+    </script>
+
+
+    </body>
+</html>

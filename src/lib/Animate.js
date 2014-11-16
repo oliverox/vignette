@@ -235,5 +235,4 @@
 			return id;
 		}
 	};
-})(this);
-
+})(window);

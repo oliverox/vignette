@@ -1,0 +1,32 @@
+{
+    id: 1,
+    title: "10 Reasons Why You Must Visit Australia Before You Die",
+    titlePosition: 0,
+    coverPhotoUrl: '',
+    displayAuthor: true,
+    createdBy: {
+        fbId : '',
+        firstName: 'Oliver',
+        lastName: 'Oxenham',
+        email: 'oliver.oxenham@gmail.com'
+    },
+    stories: [{
+        index: 0,
+        type: 1,
+        photoId: '',
+        url: './images/004.jpg',
+        width: 1024,
+        height: 768,
+        text: '',
+        backgroundColor: ''
+    }, {
+        index: 1,
+        type: 1,
+        photoId: '',
+        url: './images/005.jpg',
+        width: 1024,
+        height: 768,
+        text: '',
+        backgroundColor: ''
+    }]
+}

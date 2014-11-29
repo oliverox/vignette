@@ -1,9 +1,9 @@
-// var io = require('socket.io-browserify');
-// var $ = require('jquery');
-// var _ = require('underscore');
-var Backbone = require('exoskeleton');
-// var React = require('react');
-var Router = require('./router');
+/**
+* @jsx React.DOM
+*/
+
+var React = require('react');
+var RouterComponent = React.createFactory(require('../components/router_component'));
 
 var Application = (function () {
 
@@ -36,20 +36,12 @@ var Application = (function () {
         return this.start();
     };
 
-    Application.prototype.initRouter = function (routes) {
+    Application.prototype.initRouter = function() {
         console.log('Application#initRouter');
-        var pushState = true;
-        this.router = Router.start(this.appContainerElement, routes, pushState);
-        if (Backbone.history && Backbone.history._wantsPushState) {
-            document.getElementsByTagName('html')[0].addEventListener("click", function(evt) {
-                if (evt.srcElement.tagName === 'A') {
-                    evt.stopPropagation();
-                    evt.preventDefault();
-                    Backbone.history.navigate(evt.srcElement.pathname, true);
-                }
-            });
-        }
-
+        React.render(
+            <RouterComponent pushState={true}/>,
+            this.appContainerElement
+        );
     };
 
     Application.prototype.start = function () {

@@ -10,8 +10,8 @@ var Render = require('../lib/Render');
 var VignetteComponent = React.createClass({
     componentDidMount: function() {
         // Settings
-        var contentWidth = 1536;
-        var contentHeight = 1024;
+        var contentWidth = this.props.items[this.props.current].width;
+        var contentHeight = this.props.items[this.props.current].height;
 
         // Initialize layout
         var container = document.getElementById("container");
@@ -25,7 +25,7 @@ var VignetteComponent = React.createClass({
         var frag = document.createDocumentFragment();
         var imgElem = document.createElement("img");
 
-        var imgSrc = "./images/004.jpg";
+        var imgSrc = this.props.items[this.props.current].url;
         imgElem.src = imgSrc;
         frag.appendChild(imgElem);
         content.appendChild(frag);
@@ -132,7 +132,6 @@ var VignetteComponent = React.createClass({
 
             }
         }
-
     },
     render: function() {
 

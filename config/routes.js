@@ -44,6 +44,16 @@ module.exports.routes = {
 
   'get /test': {
       view: 'test'
+  },
+
+  'get /mockapi': {
+      controller: 'vignette',
+      action: 'getOne'
+  },
+
+  'get /:vid': {
+      controller: 'app',
+      action: 'index'
   }
 
   // 'get /hi': {

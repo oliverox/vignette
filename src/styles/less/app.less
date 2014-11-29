@@ -67,19 +67,37 @@ html, body, #app-container {
 	transform: translateZ(0);
 }
 
-// .image {
-//     position: absolute;
-//     height: 100%;
-//     top: 0;
-//     left: 0;
-//     z-index: 1;
-//
-//     img {
-//         height: 100%;
-//     }
-// }
-//
-// .text {
-//     position: fixed;
-//     z-index: 2;
-// }
+.page-control {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+.page-control .dot {
+    display: inline-block;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    border: 1px solid lightgrey;
+    margin-right: 2px;
+}
+
+.page-control .dot.current {
+    background-color: lightgrey;
+}
+
+.nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+.nav .left-arrow {
+    position: absolute;
+    left: 0;
+    background-color: hotpink;
+}
+.nav .right-arrow {
+    position: absolute;
+    right: 0;
+    background-color: hotpink;
+}

@@ -1,4 +1,5 @@
 @import "bootstrap/bootstrap.less";
+@import "svg-sprite-navigation.less";
 
 a {
     color: blue;
@@ -36,37 +37,38 @@ html, body, #app-container {
 }
 
 #scroller-container{
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	bottom: 20px;
-	right: 240px;
-	border: 5px solid black;
-	cursor: default;
-	overflow: hidden;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    bottom: 20px;
+    right: 240px;
+    border: 5px solid black;
+    cursor: default;
+    overflow: hidden;
 
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 #scroller-content{
-	background: white;
-
-	-webkit-transform-origin: left top;
-	-webkit-transform: translateZ(0);
-	-moz-transform-origin: left top;
-	-moz-transform: translateZ(0);
-	-ms-transform-origin: left top;
-	-ms-transform: translateZ(0);
-	-o-transform-origin: left top;
-	-o-transform: translateZ(0);
-	transform-origin: left top;
-	transform: translateZ(0);
+    background: white;
+    -webkit-transform-origin: left top;
+    -webkit-transform: translateZ(0);
+    -moz-transform-origin: left top;
+    -moz-transform: translateZ(0);
+    -ms-transform-origin: left top;
+    -ms-transform: translateZ(0);
+    -o-transform-origin: left top;
+    -o-transform: translateZ(0);
+    transform-origin: left top;
+    transform: translateZ(0);
 }
 
+
+/* PageControl Component */
 .page-control {
     position: absolute;
     width: 100%;
@@ -86,10 +88,13 @@ html, body, #app-container {
     background-color: lightgrey;
 }
 
+
+/* Navigation Component */
 .nav {
     position: absolute;
     top: 50%;
     width: 100%;
+    z-index: 12;
 }
 .nav .left-arrow {
     position: absolute;
@@ -97,7 +102,40 @@ html, body, #app-container {
     background-color: hotpink;
 }
 .nav .right-arrow {
+    width: 24px;
+    height: 24px;
     position: absolute;
     right: 0;
-    background-color: hotpink;
+}
+
+/* Title Component */
+.title {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    z-index: 11;
+    -webkit-transform: translateY(-50%);
+}
+.title h1 {
+    color: white;
+    font-family: "Myriad Pro", "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* VignetteContainer Component */
+.vignette-container .dimmer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.vignette-container .invisible {
+    opacity: 0;
 }
